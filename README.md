@@ -2,13 +2,9 @@
 
 ![CI](https://github.com/timwmcqueen/ShippingCalculator/actions/workflows/ci.yml/badge.svg)
 
-This started as a small Java shipping calculator. I rebuilt it as a Spring Boot API so I could take the same basic idea and turn it into a backend service with a database, validation, tests, and Docker.
+This started as a small Java shipping calculator and was rebuilt as a Spring Boot API with request validation, database storage, migrations, tests, and Docker.
 
-The original exercise is preserved in `legacy/ShippingCost.java`. The current application demonstrates the practices I would use on a real backend service: layered design, input validation, relational persistence, schema migrations, automated tests, CI, and containerization.
-
-## Why this project exists
-
-I wanted one portfolio project that shows more than syntax. This version turns a small calculation problem into a maintainable service with an HTTP API and durable quote history.
+The original console version is kept in `legacy/ShippingCost.java`.
 
 ## Stack
 
@@ -19,7 +15,7 @@ I wanted one portfolio project that shows more than syntax. This version turns a
 - Spring Data JPA
 - H2 for local development/testing
 - PostgreSQL-ready production configuration
-- Flyway database migrations
+- Flyway
 - JUnit / Spring Boot Test / MockMvc
 - Maven
 - Docker
@@ -59,13 +55,15 @@ Example response:
 GET /api/quotes
 ```
 
-Returns the 20 most recent persisted quotes.
+Returns the 20 most recent saved quotes.
 
-## Design notes
+## Design
 
-The application is split into API, service, and persistence layers. Money is calculated with `BigDecimal` rather than floating-point values. Incoming payloads are validated before business logic executes, and invalid requests return structured HTTP problem responses.
+The application is split into API, service, and persistence layers.
 
-Flyway owns the database schema. The default profile uses H2 in PostgreSQL compatibility mode so the application runs locally without external infrastructure. The `prod` profile accepts PostgreSQL connection settings from environment variables.
+Money is calculated with `BigDecimal`. Incoming requests are validated before calculations run, and invalid requests return structured error responses.
+
+Flyway manages the database schema. The default profile uses H2 in PostgreSQL compatibility mode. The `prod` profile reads PostgreSQL connection settings from environment variables.
 
 ## Run locally
 
@@ -75,7 +73,7 @@ Requirements: Java 21 and Maven.
 mvn spring-boot:run
 ```
 
-Then create a quote:
+Create a quote:
 
 ```bash
 curl -X POST http://localhost:8080/api/quotes \
@@ -89,7 +87,7 @@ curl -X POST http://localhost:8080/api/quotes \
 mvn verify
 ```
 
-The test suite covers business calculations, persistence, request validation, and the HTTP layer.
+The tests cover quote calculations, persistence, request validation, and the HTTP layer.
 
 ## Docker
 
@@ -98,7 +96,7 @@ docker build -t shipping-quote-api .
 docker run -p 8080:8080 shipping-quote-api
 ```
 
-## Production database
+## PostgreSQL configuration
 
 Run with the `prod` profile and provide:
 
@@ -106,24 +104,6 @@ Run with the `prod` profile and provide:
 - `DB_USERNAME`
 - `DB_PASSWORD`
 
-Example:
-
 ```bash
 java -jar app.jar --spring.profiles.active=prod
 ```
-
-## Engineering practices demonstrated
-
-- REST API design
-- Layered application architecture
-- SQL-backed persistence
-- Database migrations
-- Validation and error handling
-- Automated unit/integration testing
-- CI on pull requests and main
-- Docker-based packaging
-- Git branch / pull-request workflow
-
-## Project history
-
-This repository began as a small Java coursework exercise. I intentionally preserved the original implementation under `legacy/` so the repository shows the progression from basic control flow to a structured backend service.

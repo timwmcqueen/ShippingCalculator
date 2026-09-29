@@ -1,6 +1,6 @@
 # Shipping Quote API
 
-![CI](https://github.com/ToTheLoveOfMyLife/ShippingCalculator/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/timwmcqueen/ShippingCalculator/actions/workflows/ci.yml/badge.svg)
 
 A production-style Java REST service that grew out of an early console shipping calculator exercise.
 

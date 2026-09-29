@@ -1,5 +1,7 @@
 # Shipping Quote API
 
+![CI](https://github.com/ToTheLoveOfMyLife/ShippingCalculator/actions/workflows/ci.yml/badge.svg)
+
 A production-style Java REST service that grew out of an early console shipping calculator exercise.
 
 The original exercise is preserved in `legacy/ShippingCost.java`. The current application demonstrates the practices I would use on a real backend service: layered design, input validation, relational persistence, schema migrations, automated tests, CI, and containerization.

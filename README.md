@@ -2,7 +2,7 @@
 
 ![CI](https://github.com/timwmcqueen/ShippingCalculator/actions/workflows/ci.yml/badge.svg)
 
-A production-style Java REST service that grew out of an early console shipping calculator exercise.
+This started as a small Java shipping calculator. I rebuilt it as a Spring Boot API so I could take the same basic idea and turn it into a backend service with a database, validation, tests, and Docker.
 
 The original exercise is preserved in `legacy/ShippingCost.java`. The current application demonstrates the practices I would use on a real backend service: layered design, input validation, relational persistence, schema migrations, automated tests, CI, and containerization.
 

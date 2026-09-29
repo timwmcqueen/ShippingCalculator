@@ -5,6 +5,7 @@ import com.timothymcqueen.shipping.api.QuoteResponse;
 import com.timothymcqueen.shipping.domain.ServiceLevel;
 import com.timothymcqueen.shipping.domain.ShippingQuote;
 import com.timothymcqueen.shipping.domain.ShippingQuoteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +23,7 @@ public class ShippingQuoteService {
     private final ShippingQuoteRepository repository;
     private final Clock clock;
 
+    @Autowired
     public ShippingQuoteService(ShippingQuoteRepository repository) {
         this(repository, Clock.systemUTC());
     }

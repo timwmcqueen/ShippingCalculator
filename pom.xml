@@ -12,7 +12,7 @@
   <artifactId>shipping-quote-api</artifactId>
   <version>1.0.0</version>
   <name>Shipping Quote API</name>
-  <description>Production-style shipping quote service built from an early Java exercise.</description>
+  <description>Spring Boot API for calculating and storing shipping quotes.</description>
 
   <properties>
     <java.version>21</java.version>
